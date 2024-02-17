@@ -11,7 +11,8 @@
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/hazelnutcloud/meegle)
 ![GitHub last commit](https://img.shields.io/github/last-commit/hazelnutcloud/meegle)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub License](https://img.shields.io/github/license/hazelnutcloud/meegle)
+
 
 </div>
 
