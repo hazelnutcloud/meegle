@@ -50,16 +50,12 @@
     "clsx": "^2.1.0",
     "cmdk-sv": "^0.0.13",
     "elysia": "next",
-    "formsnap": "^0.4.4",
     "lucide-svelte": "^0.331.0",
-    "mode-watcher": "^0.2.1",
     "playwright": "^1.41.2",
     "svelte-sonner": "^0.3.17",
-    "sveltekit-superforms": "^1.13.4",
     "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^0.2.0",
     "ua-parser-js": "^1.0.37",
-    "vectordb": "^0.4.10",
-    "zod": "^3.22.4"
+    "vectordb": "^0.4.10"
   }
 }
