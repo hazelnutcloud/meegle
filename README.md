@@ -1,24 +1,31 @@
-# Meegle
+<div align='center'>
 
-Your personal search engine.
+<h1>Meegle</h1>
 
-## Developing
+<p>Your personal search engine</p>
 
-Install dependencies with `bun install`, start a development server:
+<img src="static/meegle.png" />
+
+<br />
+<br />
+
+![GitHub Release Date](https://img.shields.io/github/:variant/hazelnutcloud/meegle)
+![GitHub last commit](https://img.shields.io/github/last-commit/hazelnutcloud/meegle)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+</div>
+
+## Quick Start
 
 ```bash
-bun run dev
-
-# or start the server and open the app in a new browser tab
-bun run dev -- --open
+git clone https://github.com/hazelnutcloud/meegle.git
+cd meegle
+bun install
+bun dev
 ```
 
-## Building
+1. Open [localhost:5173](http://localhost:5173) in your browser.
 
-To create a production version of your app:
+2. Enter a url and click "Index" to index the page.
 
-```bash
-bun run build
-```
-
-Start the production build with `bun start`.
+3. Search for your indexed pages by opening up the search panel and typing in a search query.
