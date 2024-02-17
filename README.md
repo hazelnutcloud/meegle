@@ -29,3 +29,7 @@ bun dev
 2. Enter a url and click "Index" to index the page.
 
 3. Search for your indexed pages by opening up the search panel and typing in a search query.
+
+## Notes
+
+- Search is currently inaccurate due to https://github.com/lancedb/lancedb/issues/882#issuecomment-1949558198. Currently, it just returns all indexed pages. Once the issue is resolved, search will be accurate.
