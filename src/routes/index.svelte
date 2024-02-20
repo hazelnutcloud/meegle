@@ -1,27 +1,34 @@
 <script lang="ts">
-	import { isUrl } from '$lib/utils';
+	import { parseUrl } from '$lib/utils';
 	import { Button } from '$lib/components/ui/button';
 	import { Download } from 'lucide-svelte';
 	import { Input } from '$lib/components/ui/input';
 	import { createClient } from '$lib/client';
-	import { toast } from "svelte-sonner";
+	import { toast } from 'svelte-sonner';
 
 	const client = createClient({ fetcher: fetch });
 
 	let indexUrl: string | undefined;
 
-	$: indexDisabled = !isUrl(indexUrl ?? '');
+	$: indexDisabled = (() => {
+		try {
+			parseUrl(indexUrl ?? '');
+			return false;
+		} catch {
+			return true;
+		}
+	})();
 
 	const handleSubmit = async () => {
 		if (indexDisabled || !indexUrl) return;
 
-		toast.loading(`Indexing ${indexUrl}...`)
+		toast.loading(`Indexing ${indexUrl}...`);
 
 		const res = await client.api.index.post({ url: indexUrl });
 
 		if (res.error) {
 			toast.error(`An error occurred: ${res.error.message}`);
-			return
+			return;
 		}
 
 		toast.success(`${indexUrl} indexed successfully!`);

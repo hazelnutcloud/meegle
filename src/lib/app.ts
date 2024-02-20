@@ -2,7 +2,7 @@ import { swagger } from '@elysiajs/swagger';
 import { Elysia, t } from 'elysia';
 import { getEmbeddings, getHtml, storeEmbeddings } from './embed/embed';
 import { search } from './embed/search';
-import { isUrl } from './utils';
+import { parseUrl } from './utils';
 
 export const app = new Elysia({ prefix: '/api' })
 	.use(swagger({ path: '/docs', exclude: /^\/api\/docs/ }))
@@ -21,10 +21,10 @@ export const app = new Elysia({ prefix: '/api' })
 	.post(
 		'/index',
 		async ({ body }) => {
-			if (!isUrl(body.url)) throw new Error('Invalid URL');
-			const html = await getHtml(body);
+      const url = parseUrl(body.url);
+			const html = await getHtml({ url });
 			const embeddings = await getEmbeddings({ content: html });
-			await storeEmbeddings({ url: body.url, embeddings });
+			await storeEmbeddings({ url, embeddings });
 			return "Embeddings stored!"
 		},
 		{

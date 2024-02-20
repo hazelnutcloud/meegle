@@ -50,7 +50,7 @@
     "clsx": "^2.1.0",
     "cmdk-sv": "^0.0.13",
     "elysia": "next",
-    "lucide-svelte": "^0.331.0",
+    "lucide-svelte": "^0.333.0",
     "mode-watcher": "^0.2.1",
     "playwright": "^1.41.2",
     "svelte-sonner": "^0.3.17",

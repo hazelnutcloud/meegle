@@ -34,13 +34,6 @@
 				return;
 			}
 			results = searchResults.data;
-			// results = searchResults;
-			// await new Promise<void>((resolve) => {
-			// 	setTimeout(() => {
-			// 		results = ['https://google.com', 'https://bing.com', 'https://duckduckgo.com'];
-			// 		resolve();
-			// 	}, 500);
-			// });
 			querying = false;
 		}, 500);
 	}
@@ -73,11 +66,13 @@
 			open = true;
 		}}>Search</Button
 	>
-	<kbd
-		class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[12px] font-medium text-muted-foreground opacity-100"
-	>
-		<span class="">{commandPrefix}</span>+ K
-	</kbd>
+	{#if ua}
+		<kbd
+			class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[12px] font-medium text-muted-foreground opacity-100"
+		>
+			<span class="">{commandPrefix}</span>+ K
+		</kbd>
+	{/if}
 </div>
 
 <Command.Dialog bind:open loop shouldFilter={false}>
@@ -93,7 +88,14 @@
 			{#each results as result}
 				<Command.Item onSelect={handleSelect}
 					><div class="flex w-full items-center justify-between">
-						<Button variant="link" size="sm">{result}</Button>
+						<Button
+							href={result}
+							target="_blank"
+							rel="noopener noreferrer"
+							variant="link"
+							size="sm"
+							class="max-w-sm justify-start truncate">{result}</Button
+						>
 						<ExternalLink />
 					</div></Command.Item
 				>

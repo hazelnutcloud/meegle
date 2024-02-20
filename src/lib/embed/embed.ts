@@ -2,11 +2,11 @@ import { chromium } from 'playwright';
 import { Tensor, pipeline } from '@xenova/transformers';
 import { embeddingsTable } from '../../hooks.server';
 
-export async function getHtml({ url }: { url: string }) {
+export async function getHtml({ url }: { url: URL }) {
 	const browser = await chromium.launch();
-	const page = await browser.newPage();
+	const page = await browser.newPage({ userAgent: 'meegle' });
 	// Visit the URL and wait for the page to load, then get the html content
-	await page.goto(url);
+	await page.goto(url.toString());
 	await page.waitForLoadState();
 	const html = await page.content();
 	await browser.close();
@@ -20,7 +20,15 @@ export async function getEmbeddings({ content }: { content: string }) {
 	return embeddings;
 }
 
-export async function storeEmbeddings({ url, embeddings }: { url: string; embeddings: Tensor }) {
+// export async function getSummary({ content }: { content: string }) {
+//   // Create a summary from the content
+//   const generator = await pipeline('summarization', 'Xenova/distilbart-cnn-6-6');
+//   const summary = await generator(content, { max_new_tokens: 10 });
+//   return summary;
+// }
+
+export async function storeEmbeddings({ url, embeddings }: { url: URL; embeddings: Tensor }) {
 	// Save the embeddings to the database
-	await embeddingsTable.add([{ vector: embeddings.data, url }]);
+  await embeddingsTable.delete(`url = "${url.toString()}"`);
+	await embeddingsTable.add([{ vector: Array.from(embeddings.data), url: url.toString() }]);
 }
